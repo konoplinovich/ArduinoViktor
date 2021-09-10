@@ -8,7 +8,8 @@
 #include "FastLED.h"          // библиотека для работы с лентой
 
 #define LED_COUNT 49          // число светодиодов в кольце/ленте
-#define LED_DT 13             // пин, куда подключен DIN ленты
+#define LED_DT_1 12             // пин, куда подключен DIN ленты
+#define LED_DT_2 13             // пин, куда подключен DIN ленты
 
 int max_bright = 100;          // максимальная яркость (0 - 255)
 boolean adapt_light = 1;       // адаптивная подсветка (1 - включить, 0 - выключить)
@@ -70,7 +71,8 @@ void setup()
   Serial.begin(9600);              // открыть порт для связи
   LEDS.setBrightness(max_bright);  // ограничить максимальную яркость
 
-  LEDS.addLeds<WS2811, LED_DT, GRB>(leds, LED_COUNT);  // настрйоки для нашей ленты (ленты на WS2811, WS2812, WS2812B)
+  LEDS.addLeds<WS2811, LED_DT_1, GRB>(leds, LED_COUNT);  // настрйоки для нашей ленты (ленты на WS2811, WS2812, WS2812B)
+  LEDS.addLeds<WS2811, LED_DT_2, GRB>(leds, LED_COUNT);  // настрйоки для нашей ленты (ленты на WS2811, WS2812, WS2812B)
   one_color_all(0, 0, 0);          // погасить все светодиоды
   LEDS.show();                     // отослать команду
 
